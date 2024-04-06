@@ -17,14 +17,13 @@ public class Main{
         // System.out.print(String.format("%-5s%-5d|", "|", 7));
         Board board = new Board(10,10);
         Ship kapal = new Ship(2, 2, 3 );  // x=2 y=3
-        Ship kapal2 = new Ship(3, 3, 2 );
-        kapal.setDirection('v');
-        kapal2.setDirection('h');
+        Ship kapal2 = new Ship(3, 9, 2 );  //2,3 should be error?? whats wrong.
+        kapal.setDirection('h');
+        kapal2.setDirection('v');
 
         Ship[] ships = {kapal, kapal2};
-
-        board.setOnBoardShip(kapal);
-
+        board.setOnBoardShip(ships);
+        //board.setOnBoardShip(new Ship[]{kapal2});
         board.drawBoard();
         
     }
