@@ -41,11 +41,11 @@ public class Main{
             int y = Integer.parseInt(Integer.toString(coord).substring(1));
             board.dropBomb(x, y);
         }*/
-
+/* 
         Scanner input = new Scanner(System.in);
         Bot bot = new Bot(new Board(10, 10));
         bot.generateShip();
-        while (!bot.board.isWin()) {
+        while (!bot.board.isDestroyed()) {
             
             bot.board.drawBoard();
             bot.board.drawInvisibleBoard();
@@ -55,8 +55,23 @@ public class Main{
             bot.board.dropBomb(x, y);
         }
 
-        System.out.println("CONGRATS");
+        System.out.println("CONGRATS");*/
 
-        
+        Scanner input = new Scanner(System.in);
+        Bot bot = new Bot(new Board(10, 10));
+        bot.generateShip();
+        GameFunc.titleBanner();
+        while (!bot.board.isDestroyed()) {
+            //bot.board.drawBoard();
+            bot.board.drawInvisibleBoard();
+
+            System.out.println(">> Type the chosen grid to drop the bomb (ex: a1)");
+            System.out.print(">> ");
+            String grid = input.nextLine();
+            Coordinate coord = GameFunc.coordinateConverter(grid);
+            bot.board.dropBomb(coord.getX(), coord.getY());
+        }
+        GameFunc.congrats();
+
     }
 }

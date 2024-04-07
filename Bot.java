@@ -14,7 +14,7 @@ public class Bot {
 
     public void generateShip(){
         int size = 2;
-        while (this.board.getOnShip().size() != 4) {
+        while (this.board.getShipsOnBoard().size() != 4) {
 
             Coordinate initCoord = getRandomCoord();
             int x = initCoord.getX();
@@ -23,12 +23,12 @@ public class Bot {
             Coordinate[] shipCoordinateV = this.board.constructShip(size, 'v', x, y);
 
             if (checkCoordinateIsSafe(shipCoordinateH)) { // if ship h !collide
-                this.board.setOnBoardShip(new Ship(size, x, y, 'h')); 
+                this.board.setShipOnBoard(new Ship(size, x, y, 'h')); 
                 // delete coord from availableCoord
                 removeCoordsFromAvailable(shipCoordinateV);
                 size++;
             }else if (checkCoordinateIsSafe(shipCoordinateV)) {   // if ship v !collide
-                this.board.setOnBoardShip(new Ship(size, x, y, 'v'));
+                this.board.setShipOnBoard(new Ship(size, x, y, 'v'));
                 removeCoordsFromAvailable(shipCoordinateH);
                 size++;
             }

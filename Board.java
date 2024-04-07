@@ -8,8 +8,8 @@ public class Board{
     private int rows;
     private int cols;
     private char[][] grid; //for the ship coordinate
-    private Ship[] onBoardShip; // OUTDATED, use below
-    List<Ship> onShip = new ArrayList<Ship>();
+    //private Ship[] onBoardShip; // OUTDATED, use below
+    List<Ship> shipsOnBoard = new ArrayList<Ship>();
 
     public Board(int rows, int cols){
         this.grid = new char[rows][cols];
@@ -17,12 +17,12 @@ public class Board{
         this.cols = cols;
     }
 
-    public Ship[] getOnBoardShip() {
-        return onBoardShip;
-    }
+    // public Ship[] getOnBoardShip() {
+    //     return onBoardShip;
+    // }
 
-    public List<Ship> getOnShip() {
-        return onShip;
+    public List<Ship> getShipsOnBoard() {
+        return shipsOnBoard;
     }
 
     public char[][] getGrid() {
@@ -133,7 +133,7 @@ public class Board{
     }*/
 
     // refactor result, check collide on the outside
-    public void setOnBoardShip(Ship ship) {
+    public void setShipOnBoard(Ship ship) {
 
         Coordinate[] shipCoordinate = constructShip(
             ship.getSize(), 
@@ -142,7 +142,7 @@ public class Board{
             ship.getCoordinateY()
         );
         // add ship to onboardship list and grid
-        this.onShip.add(ship);
+        this.shipsOnBoard.add(ship);
         for (Coordinate coord : shipCoordinate) {
             this.update(coord.getX()-1, coord.getY()-1, ship.getType());
         }
@@ -228,10 +228,10 @@ public class Board{
     }
 
     // TODO: win con
-    public boolean isWin() {
+    public boolean isDestroyed() {
         int toDestroy = 0;
         int destroyed = 0;
-        for (Ship ship : onShip) {
+        for (Ship ship : shipsOnBoard) {
             toDestroy += ship.getSize();
         }
 
