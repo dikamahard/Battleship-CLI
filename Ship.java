@@ -9,6 +9,12 @@ public class Ship {
         this.coord = new Coordinate(x, y); // position on board
     }
 
+    public Ship(int size, int x, int y, char direction) {
+        this.size = size;
+        this.coord = new Coordinate(x, y); // position on board
+        this.direction = direction;
+    }
+
     public int getSize() {
         return size;
     }
