@@ -80,14 +80,15 @@ public class Board{
                     this.update(coord.getX()-1, coord.getY()-1, ship.getType());
                 }
             }else {
-                System.out.println("ERROR SHIP COLLIDED");
+                System.out.println("ERROR SHIP COLLIDED OR OUT OF BOUND");
             }
            
         }
         //this.update(rows, cols, 0);
     }
 
-    //func to check if ship placement collide
+    //func to check if ship placement collide and 
+    // and array out of bound?
     public boolean checkNoCollideShip(Ship newShip) {        
         // get newly build ship coord
         int x = newShip.getCoordinateX();
@@ -99,8 +100,15 @@ public class Board{
         
         // compare new with current
         for (Coordinate coord : newShipCoord) {
+            if (coord.getX() > 10 || coord.getY() > 10) {
+                // array out of bound
+                System.err.println("out");
+                return false;
+            }
+
             if (this.grid[coord.getX()-1][coord.getY()-1] != '\0') {
                 // collision detected
+                System.err.println("col");
                 return false;
             }
         }
@@ -136,6 +144,26 @@ public class Board{
     }
 
 
+    //func dropBomb
+    public void dropBomb(int coordX, int coordY) {
+        int x = coordX-1;
+        int y = coordY-1;
+        // check array bound
+
+
+        // drop bomb (if there is ship print * else X)
+        // error handling bombing the same area
+        if (this.grid[x][y] == '\0') {
+            update(x, y, 'X');
+        }else if (this.grid[x][y] == 'X' || this.grid[x][y] == '*') {
+            System.err.println("Grid Already Bombed");
+            //return;
+        }else {
+            update(x, y, '*');
+        }
+
+
+    }
 
 
 }
