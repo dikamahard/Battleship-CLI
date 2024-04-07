@@ -2,7 +2,7 @@ public class Ship {
     private int size;
     private char direction; // v or h
     private Coordinate coord;
-    private static final char[] TYPE = {'D', 'C', 'B', 'A'};  // size2, size3, size4, size5. For printing the ship looks in board
+    public static final char[] TYPE = {'D', 'C', 'B', 'A'};  // size2, size3, size4, size5. For printing the ship looks in board
 
     public Ship(int size, int x, int y) {
         this.size = size;
