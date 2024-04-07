@@ -72,7 +72,6 @@ public class Board{
         }
     }
 
-    //TODO: func to draw invisible board for enemy
     public void drawInvisibleBoard(){
         char c;
         System.out.print("    ");
@@ -80,10 +79,7 @@ public class Board{
             System.out.print(String.format("%s  ", c));
         }
         System.out.println();
-
-        // ship data
-        //int extend;
-        //grid[2-1][3-1] = 'x'; //DEBUG    
+ 
         for (int i = 0; i < this.rows; i++) {
             System.out.print(String.format("%2d|", i+1));
             for (int j = 0; j < this.cols; j++) {
@@ -96,10 +92,7 @@ public class Board{
                     drawCell(this.grid[j][i]);
                 }else { 
                     drawCell(' ');
-                }
-                
-                
-                
+                }            
             }
             System.out.println("|");
             System.out.println("  +==============================+");
@@ -225,13 +218,36 @@ public class Board{
         if (this.grid[x][y] == '\0') {
             update(x, y, 'X');
             // return true?
-        }else if (this.grid[x][y] == 'X' || this.grid[x][y] == '*') {
+        }else if (this.grid[x][y] == 'X' || this.grid[x][y] == '*') {// should be outside
             System.err.println("Grid Already Bombed");
             //return false?
         }else {
             update(x, y, '*');
             // return true?
         }
+    }
+
+    // TODO: win con
+    public boolean isWin() {
+        int toDestroy = 0;
+        int destroyed = 0;
+        for (Ship ship : onShip) {
+            toDestroy += ship.getSize();
+        }
+
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < this.cols; j++) {  
+                if (this.grid[j][i] == '*') {
+                    destroyed++;
+                }              
+            }
+        }
+
+        if(destroyed == toDestroy){
+            return true;
+        }
+
+        return false;
     }
 
 

@@ -45,7 +45,7 @@ public class Main{
         Scanner input = new Scanner(System.in);
         Bot bot = new Bot(new Board(10, 10));
         bot.generateShip();
-        while (true) {
+        while (!bot.board.isWin()) {
             
             bot.board.drawBoard();
             bot.board.drawInvisibleBoard();
@@ -54,6 +54,8 @@ public class Main{
             int y = Integer.parseInt(Integer.toString(coord).substring(1));
             bot.board.dropBomb(x, y);
         }
+
+        System.out.println("CONGRATS");
 
         
     }
