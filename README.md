@@ -1,5 +1,7 @@
 # Battleship CLI
 
+<img src="https://views.whatilearened.today/views/github/dikamahard/Battleship-CLI.svg" width="70px" height="20px" alt="View" />   
+
 A classic console / command line interface game based on old NES (Nintendo Entertainment System) Game called "Battleship"
 
 ## Installation
